@@ -19,7 +19,9 @@ const cards = [
     'dead_sea.png',   // Añade la nueva imagen
     'dead_sea.png',    // Añade la nueva imagen
     'matzah.png',
-    'matzah.png'
+    'matzah.png',
+    'manzana_con_miel.png',
+    'manzana_con_miel.png'
 
 ];
 
