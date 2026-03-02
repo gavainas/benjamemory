@@ -1,55 +1,96 @@
 /* styles.css */
+:root{
+  --card-size: 100px;
+  --gap: 10px;
+}
+
 body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 20px;
 }
 
 h1 {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #reset-button {
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
+/* ✅ RESPONSIVE: el tablero se adapta al ancho disponible */
 #game-board {
-    display: grid;
-    grid-template-columns: repeat(4, 100px); /* Ajusta el número de columnas según sea necesario */
-    gap: 10px;
+  display: grid;
+  gap: var(--gap);
+
+  /* En vez de 4 columnas fijas de 100px:
+     crea tantas columnas como quepan, con un mínimo razonable */
+  grid-template-columns: repeat(auto-fit, minmax(var(--card-size), 1fr));
+
+  /* Limita el ancho máximo para que no se estire infinito en desktop */
+  width: min(520px, 100%);
+
+  /* Centrado prolijo */
+  margin: 0 auto;
 }
 
 .card {
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    background-image: url('images/back.png'); /* Imagen de la carta tapada */
-    background-size: cover;
+  /* ✅ Cuadradas y adaptables */
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  background-image: url('images/back.png'); /* Imagen de la carta tapada */
+  background-size: cover;
+  background-position: center;
 }
 
 .card img {
-    width: 80%;
-    height: 80%;
-    display: none;
+  width: 80%;
+  height: 80%;
+  display: none;
+  object-fit: contain;
 }
 
 .card.flipped {
-    background-image: none;
+  background-image: none;
 }
 
 .card.flipped img {
+  display: block;
+}
+
+/* ✅ Ajuste para pantallas chicas */
+@media (max-width: 520px) {
+  :root{
+    --card-size: 72px;
+    --gap: 8px;
+  }
+
+  body{
+    padding: 12px;
+  }
+
+  #reset-button{
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
     display: block;
 }
+
